@@ -53,11 +53,13 @@ jobs:
           NOTES="Public Beta release for BRAT installation.\n\nAssets: main.js, manifest.json, styles.css."
 
           if gh release view "$VERSION" >/dev/null 2>&1; then
-            gh release upload "$VERSION" main.js manifest.json styles.css --clobber
-          else
-            gh release create "$VERSION" \
-              main.js manifest.json styles.css \
-              --target "$GITHUB_SHA" \
-              --title "$TITLE" \
-              --notes "$NOTES"
+            echo "Release ${VERSION} already exists. Refusing to overwrite an existing published version."
+            echo "Bump manifest.json and runtime PLUGIN_VERSION before publishing new release assets."
+            exit 1
           fi
+
+          gh release create "$VERSION" \
+            main.js manifest.json styles.css \
+            --target "$GITHUB_SHA" \
+            --title "$TITLE" \
+            --notes "$NOTES"
