@@ -1,0 +1,9 @@
+{
+  "id": "weread-reading-data",
+  "name": "Weread Reading Dashboard",
+  "version": "1.0.0",
+  "minAppVersion": "1.11.4",
+  "description": "同步微信读书书架、划线、想法与阅读统计，提供阅读看板、知识中心、书籍详情和回顾功能。",
+  "author": "libaiwan",
+  "isDesktopOnly": true
+}
