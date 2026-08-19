@@ -4,14 +4,10 @@ Weread Reading Dashboard 是一个 Obsidian 桌面端插件，用于同步微信
 
 ## Beta 安装（推荐）
 
-当前 Beta 通过 **BRAT** 分发。
-
 ### 第一次安装
 
-BRAT 是 Beta 安装入口，因此首次使用前需要先安装并启用 BRAT：
-
 1. 在 Obsidian 打开「设置 → 第三方插件 → 浏览」。
-2. 搜索 **BRAT**，安装并启用。
+2. 搜索 **BRAT**，安装并激活。
 3. 然后使用下面任意方式安装阅迹可视化看板。
 
 ### 通过 BRAT 安装
