@@ -13,7 +13,7 @@ Weread Reading Dashboard 是一个 Obsidian 桌面端插件，用于同步微信
 ### 通过 BRAT 安装
 
 1. 打开「设置 → BRAT」。
-2. 选择 **Add Beta Plugin**。
+2. 在 **Beta 插件列表** 右侧点击 **+**。
 3. 输入：
 
 ```text
