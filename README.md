@@ -6,20 +6,59 @@ Weread Reading Dashboard 是一个 Obsidian 桌面端插件，用于同步微信
 
 ## Beta 安装（推荐）
 
-当前 Beta 通过 BRAT 分发。
+当前 Beta 通过 **BRAT** 分发。
 
-1. 在 Obsidian 中打开「设置 → 第三方插件 → 浏览」。
-2. 搜索并安装 **BRAT**，然后启用。
-3. 打开「设置 → BRAT」。
-4. 选择 **Add Beta Plugin**。
-5. 输入本仓库地址：`https://github.com/libaiwan925/weread-reading-dashboard`。
-6. 安装完成后，在「设置 → 第三方插件」中启用 **Weread Reading Dashboard**。
-7. 打开插件设置，填写微信读书 API Key。
-8. 第一次同步建议使用 Full Sync，后续日常刷新使用 Quick Sync。
+### 第一次安装
+
+BRAT 是 Beta 安装入口，因此首次使用前需要先安装并启用 BRAT：
+
+1. 在 Obsidian 打开「设置 → 第三方插件 → 浏览」。
+2. 搜索 **BRAT**，安装并启用。
+3. 然后使用下面任一方式安装 Weread Reading Dashboard。
+
+### 方式 A：BRAT 一键打开
+
+BRAT 已安装并启用后，可使用：
+
+[使用 BRAT 安装 Weread Reading Dashboard](obsidian://brat?plugin=https%3A%2F%2Fgithub.com%2Flibaiwan925%2Fweread-reading-dashboard&version=latest)
+
+如果客户端没有把上面的协议链接渲染为可点击链接，也可以复制：
+
+```text
+obsidian://brat?plugin=https%3A%2F%2Fgithub.com%2Flibaiwan925%2Fweread-reading-dashboard&version=latest
+```
+
+### 方式 B：在 BRAT 中手动添加
+
+1. 打开「设置 → BRAT」。
+2. 选择 **Add Beta Plugin**。
+3. 输入：
+
+```text
+https://github.com/libaiwan925/weread-reading-dashboard
+```
+
+4. 版本选择器可以**保持默认的 `Select a version` 不操作**，然后直接点击 **Add plugin**。这种情况下 BRAT 会安装当前最新 Release，并继续跟踪后续新版本。
+5. 如果手动打开版本菜单，普通 Beta 用户建议选择 **Latest version**。
+6. 只有需要做旧版本回归测试时，才选择具体版本（例如 `1.0.0`）；具体版本会固定在该版本，不跟随新版本更新。
+7. 建议保留 **Enable after installing the plugin** 勾选。
+
+### 安装完成后
+
+1. 确认「设置 → 第三方插件」中 **Weread Reading Dashboard** 已启用。
+2. 打开插件设置，填写微信读书 API Key。
+3. 第一次同步建议使用 **Full Sync**。
+4. 后续日常刷新使用 **Quick Sync**。
+
+## 当前 Beta 版本
+
+当前公开 Beta 基线：`1.0.0`。
+
+Beta 用户建议跟踪 **Latest version**，这样后续 `1.0.1`、`1.0.2` 等版本发布后可以继续通过 BRAT 更新。
 
 ## 手动安装（备用）
 
-从 GitHub Releases 下载同一版本的：
+如果不使用 BRAT，可以从同一版本的 GitHub Release 下载：
 
 - `main.js`
 - `manifest.json`
@@ -47,7 +86,7 @@ Weread Reading Dashboard 是一个 Obsidian 桌面端插件，用于同步微信
 
 ## 发布内容
 
-仓库根目录保存公开发行元数据；每个 GitHub Release 附带：
+Public Release Repo 中保存公开发行所需的编译产物与元数据；每个 GitHub Release 提供：
 
 ```text
 main.js
@@ -55,7 +94,7 @@ manifest.json
 styles.css
 ```
 
-版本号必须与 GitHub Release tag 完全一致。
+GitHub Release tag、`manifest.json.version` 与运行时版本必须一致。
 
 ## License
 
