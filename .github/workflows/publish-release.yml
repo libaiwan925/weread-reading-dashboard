@@ -1,0 +1,63 @@
+name: Publish Obsidian Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - main.js
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate release files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f main.js
+          test -f manifest.json
+          test -f styles.css
+          node <<'NODE'
+          const fs = require('fs');
+          const manifest = JSON.parse(fs.readFileSync('manifest.json', 'utf8'));
+          const main = fs.readFileSync('main.js', 'utf8');
+          if (!/^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/.test(manifest.version)) {
+            throw new Error(`Invalid manifest version: ${manifest.version}`);
+          }
+          const match = main.match(/exports\.PLUGIN_VERSION\s*=\s*["']([^"']+)["']/);
+          if (!match) {
+            throw new Error('Could not find runtime PLUGIN_VERSION in main.js');
+          }
+          if (match[1] !== manifest.version) {
+            throw new Error(`Version mismatch: main.js=${match[1]}, manifest.json=${manifest.version}`);
+          }
+          console.log(`Validated release ${manifest.version}`);
+          NODE
+
+      - name: Publish GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION="$(node -p "require('./manifest.json').version")"
+          TITLE="Weread Reading Dashboard ${VERSION} (Public Beta)"
+          NOTES="Public Beta release for BRAT installation.\n\nAssets: main.js, manifest.json, styles.css."
+
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release upload "$VERSION" main.js manifest.json styles.css --clobber
+          else
+            gh release create "$VERSION" \
+              main.js manifest.json styles.css \
+              --target "$GITHUB_SHA" \
+              --title "$TITLE" \
+              --notes "$NOTES"
+          fi
