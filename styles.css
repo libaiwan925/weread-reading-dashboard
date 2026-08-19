@@ -1,0 +1,40 @@
+/* Plugin settings only. Dashboard page visuals remain untouched. */
+.wrd-settings-page { max-width: 980px; }
+.wrd-settings-page .wrd-setting-stack { flex-direction: column; align-items: stretch; gap: 10px; }
+.wrd-settings-page .wrd-setting-stack > .setting-item-info,
+.wrd-settings-page .wrd-setting-stack > .setting-item-control { width: 100%; max-width: none; }
+.wrd-settings-page .wrd-setting-stack > .setting-item-control { justify-content: flex-start; flex-wrap: wrap; gap: 8px; }
+.wrd-api-key-input { flex: 1 1 360px; width: min(100%, 520px); min-width: 280px; }
+.wrd-open-mode-setting select { width: min(100%, 680px); max-width: 680px; }
+.wrd-advanced-settings { margin-top: 22px; border-top: 1px solid var(--background-modifier-border); padding-top: 14px; }
+.wrd-advanced-settings > summary { cursor: pointer; color: var(--text-normal); font-weight: var(--font-semibold); padding: 8px 0; }
+.wrd-advanced-settings .wrd-maintenance-setting .setting-item-info { max-width: 68%; }
+.wrd-runtime-version { color: var(--text-muted); white-space: nowrap; }
+@media (max-width: 760px) {
+  .wrd-api-key-input { min-width: 220px; }
+  .wrd-advanced-settings .wrd-maintenance-setting { flex-direction: column; align-items: stretch; gap: 8px; }
+  .wrd-advanced-settings .wrd-maintenance-setting .setting-item-info,
+  .wrd-advanced-settings .wrd-maintenance-setting .setting-item-control { max-width: none; width: 100%; }
+  .wrd-advanced-settings .wrd-maintenance-setting .setting-item-control { justify-content: flex-start; }
+}
+
+/* Native application host. */
+.wrdn-v2-native-view-shell .view-content,
+.wrdn-v2-native-view {
+  width: 100% !important; max-width: none !important; min-width: 0 !important;
+  height: 100% !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important;
+  overflow: auto !important; contain: none !important; background: var(--background-primary) !important;
+  overflow-anchor: none !important;
+}
+.wrdn-v2-native-view > .wrdn-v2172-persistent-mount,
+.wrdn-v2-native-view > .wrdn-v2-native-mount,
+.wrdn-v2-native-mount {
+  display: block !important; width: 100% !important; max-width: none !important; min-width: 0 !important;
+  height: auto !important; min-height: 100% !important; margin: 0 !important; padding: 0 !important;
+  overflow: visible !important; contain: none !important; border: 0 !important;
+  background: transparent !important; box-shadow: none !important;
+}
+.wrdn-v2-native-transitioning .markdown-preview-sizer,
+.wrdn-v2-native-transitioning .cm-sizer { visibility: hidden !important; }
+.wrdn-v2-native-book-detail { overflow: hidden !important; }
+.wrdn-v2-native-book-detail > .wrdn-v2-native-mount { height: 100% !important; min-height: 0 !important; overflow: hidden !important; }
