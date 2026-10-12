@@ -337,9 +337,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TTL = exports.BOOK_SYNC_PAUSE_MAX_MS = exports.BOOK_SYNC_PAUSE_MIN_MS = exports.BOOK_SYNC_BATCH_SIZE = exports.REQUEST_RETRY_DELAYS_MS = exports.TIME_ZONE = exports.COVER_DIR = exports.PREFERTIME_DIAGNOSTICS_PATH = exports.PROGRESS_DIAGNOSTICS_PATH = exports.DIAGNOSTICS_PATH = exports.OUTPUT_TMP_PATH = exports.OUTPUT_PATH = exports.WEREAD_GATEWAY = exports.WEREAD_SKILL_VERSION = exports.API_KEY_SECRET_ID = exports.PLUGIN_VERSION = exports.PLUGIN_NAME = exports.PLUGIN_ID = void 0;
 exports.PLUGIN_ID = "weread-reading-data";
 exports.PLUGIN_NAME = "Weread Reading Dashboard";
-exports.PLUGIN_VERSION = "1.0.0";
+exports.PLUGIN_VERSION = "1.0.1";
 exports.API_KEY_SECRET_ID = "weread-reading-data-api-key";
-exports.WEREAD_SKILL_VERSION = "1.0.4";
+exports.WEREAD_SKILL_VERSION = "1.0.5";
 exports.WEREAD_GATEWAY = "https://i.weread.qq.com/api/agent/gateway";
 exports.OUTPUT_PATH = "阅读系统/_数据/reading-data.json";
 exports.OUTPUT_TMP_PATH = `${exports.OUTPUT_PATH}.tmp`;
@@ -2764,7 +2764,10 @@ class WereadSettingTab extends obsidian_1.PluginSettingTab {
                 this.display();
             }
             catch (error) {
-                setError(`验证失败，未覆盖已保存的 Key：${error instanceof Error ? error.message : String(error)}`);
+                const message = error?.code === "WRD_SKILL_UPGRADE_REQUIRED"
+                    ? "微信读书接口要求更新 Skill 协议。请升级 Weread Reading Dashboard 插件后重试；已保存的 API Key 不会被覆盖。"
+                    : error instanceof Error ? error.message : String(error);
+                setError(`验证失败，未覆盖已保存的 Key：${message}`);
             }
             finally {
                 button.setDisabled(false);

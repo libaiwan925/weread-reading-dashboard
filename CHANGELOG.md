@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.1 — 2026-10-12
+
+### Fixed
+
+- 微信读书 Agent Skill 请求版本升级至官方 1.0.5，修复旧协议被网关 `upgrade_info` 阻止而无法验证 API Key / 同步的问题。
+- 升级协议时显示明确的插件更新提示；失败验证不会覆盖现有 API Key。
+
+### Compatibility
+
+- 保留现有书架、划线、阅读统计、Quick/Full Sync、数据 Schema 以及「继续阅读」打开方式。
+- 本版本不包含未合入的 V2、Apple Books、关注主题开发功能。
+
+
 ## 1.0.0 — 2026-08-17
 
 首个公开 Beta 发布基线。
